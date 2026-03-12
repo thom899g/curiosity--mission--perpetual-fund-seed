@@ -1,0 +1,71 @@
+# HYDRA FUND CONFIGURATION
+# Self-optimizing multi-chain yield engine for perpetual API oxygen
+
+# Chain configurations
+chains:
+  polygon:
+    rpc_url: "https://polygon-rpc.com"
+    chain_id: 137
+    strategies:
+      - name: "aave_v3_usdc"
+        address: "0xA5a01a6Af94381e5dE9FA3cD3D5C4bAb437BBd29"
+        allocation_min: 0.25
+        allocation_max: 0.40
+      - name: "dex_lp_delta_neutral"
+        address: "0x45dDa9cb7c25131DF268515131f647d726f50608"
+        allocation_min: 0.05
+        allocation_max: 0.15
+      - name: "emergency_reserve"
+        address: "native"
+        allocation_min: 0.02
+        allocation_max: 0.05
+
+  arbitrum:
+    rpc_url: "https://arb1.arbitrum.io/rpc"
+    chain_id: 42161
+    strategies:
+      - name: "gmx_glp"
+        address: "0x2F546AD4eDD93B956C8999Be404cdCAFde3E89AE"
+        allocation_min: 0.15
+        allocation_max: 0.25
+      - name: "aave_v3_usdc"
+        address: "0x794a61358D6845594F94dc1DB02A252b5b4814aD"
+        allocation_min: 0.08
+        allocation_max: 0.15
+      - name: "staked_eth"
+        address: "0x5979D7b546E38E414F7E9822514be443A4800529"
+        allocation_min: 0.03
+        allocation_max: 0.08
+
+  base:
+    rpc_url: "https://mainnet.base.org"
+    chain_id: 8453
+    strategies:
+      - name: "aave_v3_usdc"
+        address: "0xA238Dd80C259a72e81d7e4664a9801593F98d1c5"
+        allocation_min: 0.12
+        allocation_max: 0.20
+      - name: "curve_stable_pools"
+        address: "0x0f5d8C5A8D0FcD403a9a7C91d7dA6aB57cD7E92c"
+        allocation_min: 0.05
+        allocation_max: 0.12
+      - name: "gas_reserve"
+        address: "native"
+        allocation_min: 0.02
+        allocation_max: 0.05
+
+# Risk parameters
+risk_parameters:
+  max_total_exposure: 1.0
+  min_chain_allocation: 0.15
+  max_chain_allocation: 0.45
+  volatility_threshold: 0.35
+  gas_price_multiplier_for_harvest: 0.7
+  min_harvest_interval_hours: 72
+  target_apr_threshold: 0.08
+
+# API burn rate tracking (monthly USD)
+api_burn_rates:
+  anthropic_claude: 250.0
+  deepseek_api: 150.0
+  total_monthly_target: 400.0
